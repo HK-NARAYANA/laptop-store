@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>LaptopWorld</title>
+  <title>10,000 Laptop Store | LaptopWorld</title>
   <style>
     :root {
       --bg: #f5f7fb;
@@ -44,11 +44,40 @@
       border-bottom: 1px solid var(--border);
     }
 
+    .topbar {
+      background: linear-gradient(135deg, #0d4ec7, #1f6feb);
+      color: white;
+      text-align: center;
+      padding: 10px 14px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .header-inner {
+      padding: 16px 0;
+    }
+
+    .brand-header {
+      text-align: center;
+      margin-bottom: 12px;
+    }
+
+    .brand-header .brand {
+      justify-content: center;
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      font-size: clamp(1.1rem, 2vw, 1.6rem);
+    }
+
     .nav {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 18px 0;
       gap: 20px;
     }
 
@@ -246,14 +275,11 @@
     }
 
     .brand-grid {
-      display: flex;
-      flex-direction: row;
-      flex-wrap: nowrap;
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
       gap: 18px;
       margin-top: 18px;
-      overflow-x: auto;
-      padding: 4px 4px 14px;
-      scroll-snap-type: x mandatory;
+      padding: 4px;
     }
 
     .brand-pill {
@@ -269,13 +295,12 @@
       transition: transform 0.2s ease, box-shadow 0.2s ease;
       cursor: pointer;
       display: flex;
-      flex: 0 0 150px;
+      min-width: 0;
       min-height: 130px;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       gap: 10px;
-      scroll-snap-align: start;
     }
 
     .brand-pill .brand-logo {
@@ -298,6 +323,13 @@
     }
     .brand-pill.selected { outline: 3px solid var(--primary); }
     .brand-pill span { font-size: 0.9rem; }
+    .brand-pill .brand-price {
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0;
+      color: var(--primary);
+      white-space: nowrap;
+    }
     .brand-result { margin: 14px 0 0; color: var(--primary); font-weight: 700; }
 
     .brand-pill:hover {
@@ -504,6 +536,72 @@
       color: rgba(255,255,255,0.74);
     }
 
+    .home-box {
+      background: linear-gradient(135deg, rgba(31,111,235,0.06), rgba(255,183,3,0.1));
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 28px;
+      margin-top: 8px;
+      display: grid;
+      grid-template-columns: 1.3fr 0.7fr;
+      gap: 24px;
+      align-items: center;
+    }
+
+    .home-box h3 {
+      margin: 0 0 10px;
+      font-size: clamp(1.8rem, 3vw, 2.8rem);
+      letter-spacing: -0.05em;
+    }
+
+    .home-box p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.7;
+      font-size: 1rem;
+    }
+
+    .since-box {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 22px;
+      box-shadow: 0 10px 24px rgba(16,35,68,0.05);
+    }
+
+    .since-box .year {
+      display: inline-block;
+      font-size: 2.3rem;
+      font-weight: 900;
+      color: var(--primary);
+      letter-spacing: -0.08em;
+      margin-bottom: 8px;
+    }
+
+    .contact-section {
+      background: #0f172a;
+      color: white;
+      border-radius: 26px;
+      padding: 28px;
+      margin-top: 30px;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 22px;
+    }
+
+    .contact-section h3 {
+      margin: 0 0 14px;
+      font-size: 1.4rem;
+      letter-spacing: -0.04em;
+    }
+
+    .contact-section p,
+    .contact-section a {
+      margin: 0;
+      color: rgba(255,255,255,0.8);
+      line-height: 1.7;
+    }
+
     @media (max-width: 900px) {
       .hero-grid,
       .cards {
@@ -514,8 +612,17 @@
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
 
+      .brand-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
       .nav {
         flex-wrap: wrap;
+      }
+
+      .home-box,
+      .contact-section {
+        grid-template-columns: 1fr;
       }
     }
 
@@ -536,40 +643,67 @@
       .brand-strip {
         grid-template-columns: 1fr;
       }
+
+      .brand-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
     }
   </style>
 </head>
 <body>
   <header>
-    <div class="container nav">
-      <div class="brand">
-        <div class="brand-mark">L</div>
-        <span>LaptopWorld</span>
+    <div class="topbar">Trusted Laptop Deals • India Wide Delivery</div>
+    <div class="container header-inner">
+      <div class="brand-header">
+        <div class="brand">
+          <div class="brand-mark">L</div>
+          <span>10,000 Laptop Store</span>
+        </div>
       </div>
 
-      <nav class="nav-links" aria-label="Main navigation">
-        <a href="#featured">Featured</a>
-        <a href="#deals">Deals</a>
-        <a href="#brands">Brands</a>
-        <a href="#reviews">Reviews</a>
-        <a href="#support">Support</a>
-      </nav>
+      <div class="nav">
+        <nav class="nav-links" aria-label="Main navigation">
+          <a href="#home">Home</a>
+          <a href="#featured">Featured</a>
+          <a href="#deals">Deals</a>
+          <a href="#brands">Brands</a>
+          <a href="#reviews">Reviews</a>
+          <a href="#contact">Contact</a>
+        </nav>
 
-      <div class="nav-actions">
-        <button class="btn btn-secondary">Sign In</button>
-        <button class="btn btn-primary">Buy Now</button>
+        <div class="nav-actions">
+          <button class="btn btn-secondary">Sign In</button>
+          <button class="btn btn-primary">Buy Now</button>
+        </div>
       </div>
     </div>
   </header>
 
   <main>
+    <section class="section" id="home">
+      <div class="container">
+        <div class="home-box">
+          <div>
+            <h3>Powering work, play, and creativity since 1980.</h3>
+            <p>
+              At 10,000 Laptop Store, we bring premium computing to Indian homes, students, and businesses with
+              honest advice, competitive pricing, and trusted after-sales support.
+            </p>
+          </div>
+          <div class="since-box">
+            <div class="year">1980</div>
+            <p>Serving customers across India with quality tech and service you can trust.</p>
+          </div>
+        </div>
+      </div>
+    </section>
     <section class="hero">
       <div class="container hero-grid" id="featured">
         <div class="hero-copy">
-          <h1>Power your work and play.</h1>
+          <h1>Find your perfect laptop from 10,000+ options.</h1>
           <p>
-            Discover premium laptops built for creators, students, and professionals. Fast performance,
-            vibrant displays, and all-day battery life for every workspace.
+            Explore thousands of laptops for creators, students, gamers, and professionals. Compare trusted
+            brands, powerful performance, and great prices in one place.
           </p>
 
           <div class="hero-actions">
@@ -616,16 +750,16 @@
         </div>
 
         <div class="brand-grid">
-          <button class="brand-pill" type="button" data-brand="Dell"><span class="brand-logo" aria-hidden="true"><svg viewBox="0 0 80 50"><ellipse cx="40" cy="25" rx="35" ry="20" fill="#0672ce"/><text x="40" y="32" text-anchor="middle" fill="white" font-size="20" font-weight="900">DELL</text></svg></span><span>DELL</span></button>
-          <button class="brand-pill" type="button" data-brand="HP"><span class="brand-logo" aria-hidden="true"><svg viewBox="0 0 60 60"><circle cx="30" cy="30" r="27" fill="#0096d6"/><text x="30" y="39" text-anchor="middle" fill="white" font-size="27" font-weight="700">hp</text></svg></span><span>HP</span></button>
-          <button class="brand-pill" type="button" data-brand="ASUS"><span class="brand-logo wordmark" aria-hidden="true"><svg viewBox="0 0 120 50"><text x="60" y="35" text-anchor="middle" fill="#111827" font-size="25" font-weight="900" font-style="italic">ASUS</text></svg></span><span>ASUS</span></button>
-          <button class="brand-pill" type="button" data-brand="Lenovo"><span class="brand-logo wordmark" aria-hidden="true"><svg viewBox="0 0 120 50"><rect x="8" y="8" width="104" height="34" rx="6" fill="#e2231a"/><text x="60" y="33" text-anchor="middle" fill="white" font-size="20" font-weight="900">Lenovo</text></svg></span><span>LENOVO</span></button>
-          <button class="brand-pill" type="button" data-brand="Apple"><span class="brand-logo" aria-hidden="true"><svg viewBox="0 0 60 65"><path d="M39 16c-4 0-7 3-9 3s-5-3-8-3c-8 0-15 7-15 18 0 9 7 24 14 24 3 0 5-2 9-2s5 2 9 2c8 0 14-16 14-24 0-10-6-18-14-18zM40 6c-2 5-6 8-11 8 0-5 4-9 11-8z" fill="#111827"/></svg></span><span>APPLE</span></button>
-          <button class="brand-pill" type="button" data-brand="Acer"><span class="brand-logo wordmark" aria-hidden="true"><svg viewBox="0 0 120 50"><text x="60" y="35" text-anchor="middle" fill="#83b81a" font-size="27" font-weight="900" font-style="italic">acer</text></svg></span><span>ACER</span></button>
-          <button class="brand-pill" type="button" data-brand="MSI"><span class="brand-logo" aria-hidden="true"><svg viewBox="0 0 70 60"><path d="M8 48V12h16l11 16 11-16h16v36H48V28L35 44 22 28v20z" fill="#ed1c24"/><text x="35" y="57" text-anchor="middle" fill="#111827" font-size="9" font-weight="900">MSI</text></svg></span><span>MSI</span></button>
-          <button class="brand-pill" type="button" data-brand="Microsoft"><span class="brand-logo" aria-hidden="true"><svg viewBox="0 0 60 60"><path d="M5 5h23v23H5z" fill="#f35325"/><path d="M32 5h23v23H32z" fill="#81bc06"/><path d="M5 32h23v23H5z" fill="#05a6f0"/><path d="M32 32h23v23H32z" fill="#ffba08"/></svg></span><span>MICROSOFT</span></button>
-          <button class="brand-pill" type="button" data-brand="Samsung"><span class="brand-logo wordmark" aria-hidden="true"><svg viewBox="0 0 120 50"><ellipse cx="60" cy="25" rx="54" ry="18" fill="#1428a0"/><text x="60" y="31" text-anchor="middle" fill="white" font-size="15" font-weight="900">SAMSUNG</text></svg></span><span>SAMSUNG</span></button>
-          <button class="brand-pill" type="button" data-brand="Razer"><span class="brand-logo" aria-hidden="true"><svg viewBox="0 0 60 60"><path d="M30 5c5 9 15 11 22 14-3 17-12 29-22 36C20 48 11 36 8 19c7-3 17-5 22-14z" fill="#44d62c"/><path d="M20 25c7-7 13-7 20 0-7 1-13 1-20 0zm3 10c5-4 9-4 14 0-5 1-9 1-14 0z" fill="#111827"/></svg></span><span>RAZER</span></button>
+          <button class="brand-pill" type="button" data-brand="Dell"><span class="brand-logo" aria-hidden="true"><svg viewBox="0 0 80 50"><ellipse cx="40" cy="25" rx="35" ry="20" fill="#0672ce"/><text x="40" y="32" text-anchor="middle" fill="white" font-size="20" font-weight="900">DELL</text></svg></span><span>DELL</span><span class="brand-price">₹39,999 – ₹3,49,999</span></button>
+          <button class="brand-pill" type="button" data-brand="HP"><span class="brand-logo" aria-hidden="true"><svg viewBox="0 0 60 60"><circle cx="30" cy="30" r="27" fill="#0096d6"/><text x="30" y="39" text-anchor="middle" fill="white" font-size="27" font-weight="700">hp</text></svg></span><span>HP</span><span class="brand-price">₹29,999 – ₹2,99,999</span></button>
+          <button class="brand-pill" type="button" data-brand="ASUS"><span class="brand-logo wordmark" aria-hidden="true"><svg viewBox="0 0 120 50"><text x="60" y="35" text-anchor="middle" fill="#111827" font-size="25" font-weight="900" font-style="italic">ASUS</text></svg></span><span>ASUS</span><span class="brand-price">₹34,999 – ₹4,99,999</span></button>
+          <button class="brand-pill" type="button" data-brand="Lenovo"><span class="brand-logo wordmark" aria-hidden="true"><svg viewBox="0 0 120 50"><rect x="8" y="8" width="104" height="34" rx="6" fill="#e2231a"/><text x="60" y="33" text-anchor="middle" fill="white" font-size="20" font-weight="900">Lenovo</text></svg></span><span>LENOVO</span><span class="brand-price">₹24,999 – ₹3,99,999</span></button>
+          <button class="brand-pill" type="button" data-brand="Apple"><span class="brand-logo" aria-hidden="true"><svg viewBox="0 0 60 65"><path d="M39 16c-4 0-7 3-9 3s-5-3-8-3c-8 0-15 7-15 18 0 9 7 24 14 24 3 0 5-2 9-2s5 2 9 2c8 0 14-16 14-24 0-10-6-18-14-18zM40 6c-2 5-6 8-11 8 0-5 4-9 11-8z" fill="#111827"/></svg></span><span>APPLE</span><span class="brand-price">₹99,999 – ₹3,49,999</span></button>
+          <button class="brand-pill" type="button" data-brand="Acer"><span class="brand-logo wordmark" aria-hidden="true"><svg viewBox="0 0 120 50"><text x="60" y="35" text-anchor="middle" fill="#83b81a" font-size="27" font-weight="900" font-style="italic">acer</text></svg></span><span>ACER</span><span class="brand-price">₹24,999 – ₹2,49,999</span></button>
+          <button class="brand-pill" type="button" data-brand="MSI"><span class="brand-logo" aria-hidden="true"><svg viewBox="0 0 70 60"><path d="M8 48V12h16l11 16 11-16h16v36H48V28L35 44 22 28v20z" fill="#ed1c24"/><text x="35" y="57" text-anchor="middle" fill="#111827" font-size="9" font-weight="900">MSI</text></svg></span><span>MSI</span><span class="brand-price">₹79,999 – ₹5,99,999</span></button>
+          <button class="brand-pill" type="button" data-brand="Microsoft"><span class="brand-logo" aria-hidden="true"><svg viewBox="0 0 60 60"><path d="M5 5h23v23H5z" fill="#f35325"/><path d="M32 5h23v23H32z" fill="#81bc06"/><path d="M5 32h23v23H5z" fill="#05a6f0"/><path d="M32 32h23v23H32z" fill="#ffba08"/></svg></span><span>MICROSOFT</span><span class="brand-price">₹59,999 – ₹2,79,999</span></button>
+          <button class="brand-pill" type="button" data-brand="Samsung"><span class="brand-logo wordmark" aria-hidden="true"><svg viewBox="0 0 120 50"><ellipse cx="60" cy="25" rx="54" ry="18" fill="#1428a0"/><text x="60" y="31" text-anchor="middle" fill="white" font-size="15" font-weight="900">SAMSUNG</text></svg></span><span>SAMSUNG</span><span class="brand-price">₹39,999 – ₹2,49,999</span></button>
+          <button class="brand-pill" type="button" data-brand="Razer"><span class="brand-logo" aria-hidden="true"><svg viewBox="0 0 60 60"><path d="M30 5c5 9 15 11 22 14-3 17-12 29-22 36C20 48 11 36 8 19c7-3 17-5 22-14z" fill="#44d62c"/><path d="M20 25c7-7 13-7 20 0-7 1-13 1-20 0zm3 10c5-4 9-4 14 0-5 1-9 1-14 0z" fill="#111827"/></svg></span><span>RAZER</span><span class="brand-price">₹99,999 – ₹4,29,999</span></button>
         </div>
         <p class="brand-result" id="brandResult" aria-live="polite"></p>
 
@@ -676,8 +810,8 @@
               <p class="product-desc">AI-powered laptop with 14-hour battery, OLED display, and a quiet aluminum build.</p>
               <div class="product-footer">
                 <div>
-                  <span class="price">$1,299</span>
-                  <span class="old-price">$1,599</span>
+                  <span class="price">₹1,29,900</span>
+                  <span class="old-price">₹1,59,900</span>
                 </div>
                 <button class="mini-btn">Add to cart</button>
               </div>
@@ -698,8 +832,8 @@
               <p class="product-desc">RTX graphics, rapid SSD storage, and a smooth 144Hz display for high-speed gaming.</p>
               <div class="product-footer">
                 <div>
-                  <span class="price">$1,899</span>
-                  <span class="old-price">$2,199</span>
+                  <span class="price">₹1,89,900</span>
+                  <span class="old-price">₹2,19,900</span>
                 </div>
                 <button class="mini-btn">Add to cart</button>
               </div>
@@ -720,13 +854,31 @@
               <p class="product-desc">Lightweight design, secure performance, and premium keyboard ideal for travel.</p>
               <div class="product-footer">
                 <div>
-                  <span class="price">$999</span>
-                  <span class="old-price">$1,299</span>
+                  <span class="price">₹99,900</span>
+                  <span class="old-price">₹1,29,900</span>
                 </div>
                 <button class="mini-btn">Add to cart</button>
               </div>
             </div>
           </article>
+        </div>
+
+        <div class="contact-section" id="contact">
+          <div>
+            <h3>Contact us</h3>
+            <p>10,000 Laptop Store</p>
+            <p>KPHB, HYDERABAD, TELENGANA 500085</p>
+          </div>
+          <div>
+            <h3>Phone</h3>
+            <p><a href="tel:+917569162224">+91 75691 62224</a></p>
+            <p><a href="tel:+919849005081">+91 98490 05081</a></p>
+          </div>
+          <div>
+            <h3>Email</h3>
+            <p><a href="mailto:support@10000laptopstore.in">support@10000laptopstore.in</a></p>
+            <p>Open daily: 9:00 AM – 9:00 PM</p>
+          </div>
         </div>
 
         <div class="promo-band" id="reviews" style="margin-top: 30px;">
